@@ -5,11 +5,11 @@
       <h1>☕ How to Make a Brew Using Async Await</h1>
       <button id="makeTeaButton" class="button mb">Make ☕ Button!</button>
       <div class="brewlist-container mb">
-        <div class="brewlist bs">
+        <div class="brewlist brewlist-one bs">
           <h3>Task Start</h3>
           <ol id="brew-list-start" class="list task"></ol>
         </div>
-        <div class="brewlist bs">
+        <div class="brewlist brewlist-two bs">
           <h3>Task Pending/Complete</h3>
           <ol id="brew-list-end" class="list"></ol>
         </div>
@@ -31,15 +31,16 @@
   </div>
 </div>
 <script>
-  const listContainer = document.querySelector(".brewlist");
+  const listContainerOne = document.querySelector(".brewlist-one");
+  const listContainerTwo = document.querySelector(".brewlist-two");
   const listStart = document.querySelector("#brew-list-start");
   const listEnd = document.querySelector("#brew-list-end");
   const fakeConsole = document.querySelector(".console");
   const consoleTextArea = document.querySelector("#console-text-area");
 
   /*------------------*
-  # Utilities
-  *------------------*/
+    # Utilities
+    *------------------*/
 
   // Create new element
   function createElement(value, el) {
@@ -84,8 +85,8 @@
   }
 
   /*------------------*
-  # Brew Making Functions
-  *------------------*/
+    # Brew Making Functions
+    *------------------*/
 
   // Fill kettle
   function fillKettle() {
@@ -101,7 +102,7 @@
     listEnd.append(pending);
 
     // scroll to correct point
-    scrollToPoint(itemStart, listContainer);
+    scrollToPoint(itemStart, listContainerOne);
 
     return new Promise((resolve) => {
       setTimeout(() => {
@@ -115,7 +116,7 @@
         const runningFunction = currentRunningFunction("fillKettle", false);
 
         // scroll to correct point
-        scrollToPoint(item, listContainer);
+        scrollToPoint(item, listContainerTwo);
       }, 5000);
     });
   }
@@ -134,7 +135,7 @@
     listEnd.append(pending);
 
     // scroll to correct point
-    scrollToPoint(itemStart, listContainer);
+    scrollToPoint(itemStart, listContainerOne);
 
     return new Promise((resolve) => {
       setTimeout(() => {
@@ -149,7 +150,7 @@
         const runningFunction = currentRunningFunction("grabAMug", false);
 
         // scroll to correct point
-        scrollToPoint(item, listContainer);
+        scrollToPoint(item, listContainerTwo);
       }, 3000);
     });
   }
@@ -168,7 +169,7 @@
     listEnd.append(pending);
 
     // scroll to correct point
-    scrollToPoint(itemStart, listContainer);
+    scrollToPoint(itemStart, listContainerOne);
 
     return new Promise((resolve) => {
       setTimeout(() => {
@@ -185,7 +186,7 @@
         );
 
         // scroll to correct point
-        scrollToPoint(item, listContainer);
+        scrollToPoint(item, listContainerTwo);
       }, 6000);
     });
   }
@@ -204,13 +205,13 @@
     listEnd.append(pending);
 
     // scroll to correct point
-    scrollToPoint(itemStart, listContainer);
+    scrollToPoint(itemStart, listContainerOne);
 
     return new Promise((resolve) => {
       setTimeout(() => {
         listEnd.removeChild(pending);
-        resolve("Tea now brewing... let's wait for it to brew!");
-        const action = "Tea now brewing... let's wait for it to brew!";
+        resolve("Tea now brewing... let's wait.");
+        const action = "Tea now brewing... let's wait.";
         const item = createElement(action, "li");
         item.classList.add("list", "completed");
         listEnd.appendChild(item);
@@ -221,7 +222,7 @@
         );
 
         // scroll to correct point
-        scrollToPoint(item, listContainer);
+        scrollToPoint(item, listContainerTwo);
       }, 4000);
     });
   }
@@ -241,7 +242,7 @@
     listEnd.append(pending);
 
     // scroll to correct point
-    scrollToPoint(itemStart, listContainer);
+    scrollToPoint(itemStart, listContainerOne);
 
     return new Promise((resolve) => {
       setTimeout(() => {
@@ -255,7 +256,7 @@
         const runningFunction = currentRunningFunction("removeTeaBag", false);
 
         // scroll to correct point
-        scrollToPoint(item, listContainer);
+        scrollToPoint(item, listContainerTwo);
       }, 3000);
     });
   }
@@ -265,7 +266,7 @@
     const runningFunction = currentRunningFunction("addMilk", true);
 
     // Start task
-    const action = "Add milk to taste.";
+    const action = "Add milk to taste and stir.";
     const itemStart = createElement(action, "li");
     listStart.appendChild(itemStart);
 
@@ -274,13 +275,13 @@
     listEnd.append(pending);
 
     // scroll to correct point
-    scrollToPoint(itemStart, listContainer);
+    scrollToPoint(itemStart, listContainerOne);
 
     return new Promise((resolve) => {
       setTimeout(() => {
         listEnd.removeChild(pending);
-        resolve("Milk added.");
-        const action = "Milk added.";
+        resolve("Milk added and brew stirred.");
+        const action = "Milk added and brew stirred.";
         const item = createElement(action, "li");
         item.classList.add("list", "completed");
         listEnd.appendChild(item);
@@ -288,7 +289,7 @@
         const runningFunction = currentRunningFunction("addMilk", false);
 
         // scroll to correct point
-        scrollToPoint(item, listContainer);
+        scrollToPoint(item, listContainerTwo);
       }, 3000);
     });
   }
@@ -307,7 +308,7 @@
     listEnd.append(pending);
 
     // scroll to correct point
-    scrollToPoint(itemStart, listContainer);
+    scrollToPoint(itemStart, listContainerOne);
 
     return new Promise((resolve) => {
       setTimeout(() => {
@@ -324,13 +325,9 @@
         );
 
         // scroll to correct point
-        scrollToPoint(item, listContainer);
+        scrollToPoint(item, listContainerTwo);
       }, 3000);
     });
-  }
-
-  function completedTea() {
-    const runningFunction = currentRunningFunction("completedTea");
   }
 
   async function makeTea() {
@@ -346,9 +343,7 @@
     const pause_5 = await pause();
     const f = await addMilk();
     const pause_6 = await pause();
-
-    // Completion function
-    const completed_tea = await completedTea();
+    const g = await sitBackAndRelax();
   }
 
   const makeTeaButton = document.querySelector("#makeTeaButton");
