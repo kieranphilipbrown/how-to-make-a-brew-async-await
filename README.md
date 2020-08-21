@@ -1,4 +1,8 @@
-## 🥤Gulp Boilerplate (4)
+## ☕ How to Make a Brew Using Async Await
+
+A simple, visual way to understand async await by making a cup of tea.
+
+### Set Up
 
 A basic Gulp 4 boilerplate to get developing locally with a few helpful tools already set up.
 
@@ -13,12 +17,15 @@ Tasks included:
 - Live reload
 
 ## How to run
+
 Install Gulp globally (if you don't already have it).
 
     npm install gulp-cli -g
+
 Install necessary packages
 
     npm install
+
 Run Gulp.
 
     gulp
