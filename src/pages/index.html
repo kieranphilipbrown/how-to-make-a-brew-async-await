@@ -98,11 +98,12 @@
     listStart.appendChild(itemStart);
 
     // Pending...
-    const pending = createElement("☕...");
+    const pending = createElement("☕...", "li");
     listEnd.append(pending);
 
     // scroll to correct point
     scrollToPoint(itemStart, listContainerOne);
+    scrollToPoint(pending, listContainerTwo);
 
     return new Promise((resolve) => {
       setTimeout(() => {
@@ -114,9 +115,6 @@
         listEnd.appendChild(item);
         itemStart.classList.add("strike");
         const runningFunction = currentRunningFunction("fillKettle", false);
-
-        // scroll to correct point
-        scrollToPoint(item, listContainerTwo);
       }, 5000);
     });
   }
@@ -131,11 +129,12 @@
     listStart.appendChild(itemStart);
 
     // Pending...
-    const pending = createElement("☕...");
+    const pending = createElement("☕...", "li");
     listEnd.append(pending);
 
     // scroll to correct point
     scrollToPoint(itemStart, listContainerOne);
+    scrollToPoint(pending, listContainerTwo);
 
     return new Promise((resolve) => {
       setTimeout(() => {
@@ -148,9 +147,6 @@
         listEnd.appendChild(item);
         itemStart.classList.add("strike");
         const runningFunction = currentRunningFunction("grabAMug", false);
-
-        // scroll to correct point
-        scrollToPoint(item, listContainerTwo);
       }, 3000);
     });
   }
@@ -170,6 +166,7 @@
 
     // scroll to correct point
     scrollToPoint(itemStart, listContainerOne);
+    scrollToPoint(pending, listContainerTwo);
 
     return new Promise((resolve) => {
       setTimeout(() => {
@@ -184,9 +181,6 @@
           "waitForKettleToBoil",
           false
         );
-
-        // scroll to correct point
-        scrollToPoint(item, listContainerTwo);
       }, 6000);
     });
   }
@@ -201,11 +195,12 @@
     listStart.appendChild(itemStart);
 
     // Pending...
-    const pending = createElement("☕...");
+    const pending = createElement("☕...", "li");
     listEnd.append(pending);
 
     // scroll to correct point
     scrollToPoint(itemStart, listContainerOne);
+    scrollToPoint(pending, listContainerTwo);
 
     return new Promise((resolve) => {
       setTimeout(() => {
@@ -220,9 +215,6 @@
           "pourHotWaterIntoCup",
           false
         );
-
-        // scroll to correct point
-        scrollToPoint(item, listContainerTwo);
       }, 4000);
     });
   }
@@ -238,11 +230,12 @@
     listStart.appendChild(itemStart);
 
     // Pending...
-    const pending = createElement("☕...");
+    const pending = createElement("☕...", "li");
     listEnd.append(pending);
 
     // scroll to correct point
     scrollToPoint(itemStart, listContainerOne);
+    scrollToPoint(pending, listContainerTwo);
 
     return new Promise((resolve) => {
       setTimeout(() => {
@@ -254,9 +247,6 @@
         listEnd.appendChild(item);
         itemStart.classList.add("strike");
         const runningFunction = currentRunningFunction("removeTeaBag", false);
-
-        // scroll to correct point
-        scrollToPoint(item, listContainerTwo);
       }, 3000);
     });
   }
@@ -271,11 +261,12 @@
     listStart.appendChild(itemStart);
 
     // Pending...
-    const pending = createElement("☕...");
+    const pending = createElement("☕...", "li");
     listEnd.append(pending);
 
     // scroll to correct point
     scrollToPoint(itemStart, listContainerOne);
+    scrollToPoint(pending, listContainerTwo);
 
     return new Promise((resolve) => {
       setTimeout(() => {
@@ -287,9 +278,6 @@
         listEnd.appendChild(item);
         itemStart.classList.add("strike");
         const runningFunction = currentRunningFunction("addMilk", false);
-
-        // scroll to correct point
-        scrollToPoint(item, listContainerTwo);
       }, 3000);
     });
   }
@@ -304,11 +292,12 @@
     listStart.appendChild(itemStart);
 
     // Pending...
-    const pending = createElement("☕...");
+    const pending = createElement("☕...", "li");
     listEnd.append(pending);
 
     // scroll to correct point
     scrollToPoint(itemStart, listContainerOne);
+    scrollToPoint(pending, listContainerTwo);
 
     return new Promise((resolve) => {
       setTimeout(() => {
@@ -323,9 +312,6 @@
           "sitBackAndRelax",
           false
         );
-
-        // scroll to correct point
-        scrollToPoint(item, listContainerTwo);
       }, 3000);
     });
   }
