@@ -1,0 +1,362 @@
+{% extends "base.html" %} {% block content %}
+<div class="main-content">
+  <div class="page-width">
+    <div class="main-content__container">
+      <h1>☕ How to Make a Brew Using Async Await</h1>
+      <button id="makeTeaButton" class="button mb">Make ☕ Button!</button>
+      <div class="brewlist-container mb">
+        <div class="brewlist bs">
+          <h3>Task Start</h3>
+          <ol id="brew-list-start" class="list task"></ol>
+        </div>
+        <div class="brewlist bs">
+          <h3>Task Pending/Complete</h3>
+          <ol id="brew-list-end" class="list"></ol>
+        </div>
+      </div>
+      <div class="console-container mb">
+        <div class="console-top">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+        <div class="console bs">
+          <p class="console-folder-text">
+            C:\Users\tea4Lyf\documents\code\how-to-make-a-brew-async-await >
+          </p>
+          <div id="console-text-area"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<script>
+  const listContainer = document.querySelector(".brewlist");
+  const listStart = document.querySelector("#brew-list-start");
+  const listEnd = document.querySelector("#brew-list-end");
+  const fakeConsole = document.querySelector(".console");
+  const consoleTextArea = document.querySelector("#console-text-area");
+
+  /*------------------*
+  # Utilities
+  *------------------*/
+
+  // Create new element
+  function createElement(value, el) {
+    const node = document.createElement(el);
+    const textNode = document.createTextNode(value);
+    node.appendChild(textNode);
+    return node;
+  }
+
+  // Current running function
+  function currentRunningFunction(functionName, status) {
+    if (status) {
+      console.log(functionName);
+      const node = createElement("Starting: " + functionName + "()", "p");
+      node.classList.add("console-starting");
+      consoleTextArea.appendChild(node);
+      currentHeight = node.offsetTop;
+      fakeConsole.scrollTop = currentHeight;
+    } else {
+      console.log(functionName);
+      const node = createElement("Finished: " + functionName + "()", "p");
+      consoleTextArea.appendChild(node);
+      currentHeight = node.offsetTop;
+      fakeConsole.scrollTop = currentHeight;
+    }
+  }
+
+  function pause(time) {
+    return new Promise((resolve) => {
+      setTimeout(() => {
+        resolve("Pause for 3 seconds between each task.");
+      }, 3000);
+    });
+  }
+
+  function scrollToPoint(el, elParent) {
+    console.log(el);
+    console.log(elParent);
+    const currentHeight = el.offsetTop;
+    console.log(currentHeight);
+    elParent.scrollTop = currentHeight;
+  }
+
+  /*------------------*
+  # Brew Making Functions
+  *------------------*/
+
+  // Fill kettle
+  function fillKettle() {
+    const runningFunction = currentRunningFunction("fillKettle", true);
+
+    // Start task
+    const action = "Grab kettle, fill with water and switch on.";
+    const itemStart = createElement(action, "li");
+    listStart.appendChild(itemStart);
+
+    // Pending...
+    const pending = createElement("☕...");
+    listEnd.append(pending);
+
+    // scroll to correct point
+    scrollToPoint(itemStart, listContainer);
+
+    return new Promise((resolve) => {
+      setTimeout(() => {
+        listEnd.removeChild(pending);
+        resolve("Kettle filled and water is currently warming up.");
+        const action = "Kettle filled and water is currently warming up.";
+        const item = createElement(action, "li");
+        item.classList.add("list", "completed");
+        listEnd.appendChild(item);
+        itemStart.classList.add("strike");
+        const runningFunction = currentRunningFunction("fillKettle", false);
+
+        // scroll to correct point
+        scrollToPoint(item, listContainer);
+      }, 5000);
+    });
+  }
+
+  // grab a mug
+  function grabAMug() {
+    const runningFunction = currentRunningFunction("grabAMug", true);
+
+    // Start task
+    const action = "Grab mug and pop a tea bag into it.";
+    const itemStart = createElement(action, "li");
+    listStart.appendChild(itemStart);
+
+    // Pending...
+    const pending = createElement("☕...");
+    listEnd.append(pending);
+
+    // scroll to correct point
+    scrollToPoint(itemStart, listContainer);
+
+    return new Promise((resolve) => {
+      setTimeout(() => {
+        listEnd.removeChild(pending);
+        resolve("Mug retrieved from cupboard and a tea bag placed into it.");
+        const action =
+          "Mug retrieved from cupboard and a tea bag placed into it.";
+        const item = createElement(action, "li");
+        item.classList.add("list", "completed");
+        listEnd.appendChild(item);
+        itemStart.classList.add("strike");
+        const runningFunction = currentRunningFunction("grabAMug", false);
+
+        // scroll to correct point
+        scrollToPoint(item, listContainer);
+      }, 3000);
+    });
+  }
+
+  // Wait for kettle to boil
+  function waitForKettleToBoil() {
+    const runningFunction = currentRunningFunction("waitForKettleToBoil", true);
+
+    // Start task
+    const action = "Hang tight while the kettle boils...";
+    const itemStart = createElement(action, "li");
+    listStart.appendChild(itemStart);
+
+    // Pending...
+    const pending = createElement("☕😐😔...");
+    listEnd.append(pending);
+
+    // scroll to correct point
+    scrollToPoint(itemStart, listContainer);
+
+    return new Promise((resolve) => {
+      setTimeout(() => {
+        listEnd.removeChild(pending);
+        resolve("Water is hot!");
+        const action = "Water is hot!";
+        const item = createElement(action, "li");
+        item.classList.add("list", "completed");
+        listEnd.appendChild(item);
+        itemStart.classList.add("strike");
+        const runningFunction = currentRunningFunction(
+          "waitForKettleToBoil",
+          false
+        );
+
+        // scroll to correct point
+        scrollToPoint(item, listContainer);
+      }, 6000);
+    });
+  }
+
+  // Pour hot water into cup
+  function pourHotWaterIntoCup() {
+    const runningFunction = currentRunningFunction("pourHotWaterIntoCup", true);
+
+    // Start task
+    const action = "Pour hot water into cup.";
+    const itemStart = createElement(action, "li");
+    listStart.appendChild(itemStart);
+
+    // Pending...
+    const pending = createElement("☕...");
+    listEnd.append(pending);
+
+    // scroll to correct point
+    scrollToPoint(itemStart, listContainer);
+
+    return new Promise((resolve) => {
+      setTimeout(() => {
+        listEnd.removeChild(pending);
+        resolve("Tea now brewing... let's wait for it to brew!");
+        const action = "Tea now brewing... let's wait for it to brew!";
+        const item = createElement(action, "li");
+        item.classList.add("list", "completed");
+        listEnd.appendChild(item);
+        itemStart.classList.add("strike");
+        const runningFunction = currentRunningFunction(
+          "pourHotWaterIntoCup",
+          false
+        );
+
+        // scroll to correct point
+        scrollToPoint(item, listContainer);
+      }, 4000);
+    });
+  }
+
+  // Remove tea bag
+  function removeTeaBag() {
+    const runningFunction = currentRunningFunction("removeTeaBag", true);
+
+    // Start task
+    const action =
+      "Remove tea bag with spoon. Don't squeeze bag as it'll make it bitter.";
+    const itemStart = createElement(action, "li");
+    listStart.appendChild(itemStart);
+
+    // Pending...
+    const pending = createElement("☕...");
+    listEnd.append(pending);
+
+    // scroll to correct point
+    scrollToPoint(itemStart, listContainer);
+
+    return new Promise((resolve) => {
+      setTimeout(() => {
+        listEnd.removeChild(pending);
+        resolve("Tea bag removed");
+        const action = "Tea bag removed";
+        const item = createElement(action, "li");
+        item.classList.add("list", "completed");
+        listEnd.appendChild(item);
+        itemStart.classList.add("strike");
+        const runningFunction = currentRunningFunction("removeTeaBag", false);
+
+        // scroll to correct point
+        scrollToPoint(item, listContainer);
+      }, 3000);
+    });
+  }
+
+  // Add milk
+  function addMilk() {
+    const runningFunction = currentRunningFunction("addMilk", true);
+
+    // Start task
+    const action = "Add milk to taste.";
+    const itemStart = createElement(action, "li");
+    listStart.appendChild(itemStart);
+
+    // Pending...
+    const pending = createElement("☕...");
+    listEnd.append(pending);
+
+    // scroll to correct point
+    scrollToPoint(itemStart, listContainer);
+
+    return new Promise((resolve) => {
+      setTimeout(() => {
+        listEnd.removeChild(pending);
+        resolve("Milk added.");
+        const action = "Milk added.";
+        const item = createElement(action, "li");
+        item.classList.add("list", "completed");
+        listEnd.appendChild(item);
+        itemStart.classList.add("strike");
+        const runningFunction = currentRunningFunction("addMilk", false);
+
+        // scroll to correct point
+        scrollToPoint(item, listContainer);
+      }, 3000);
+    });
+  }
+
+  // Sit back and relax
+  function sitBackAndRelax() {
+    const runningFunction = currentRunningFunction("sitBackAndRelax", true);
+
+    // Start task
+    const action = "Relax and enjoy!";
+    const itemStart = createElement(action, "li");
+    listStart.appendChild(itemStart);
+
+    // Pending...
+    const pending = createElement("☕...");
+    listEnd.append(pending);
+
+    // scroll to correct point
+    scrollToPoint(itemStart, listContainer);
+
+    return new Promise((resolve) => {
+      setTimeout(() => {
+        listEnd.removeChild(pending);
+        resolve("Sit back, relax and enjoy.");
+        const action = "Sit back, relax and enjoy.";
+        const item = createElement(action, "li");
+        item.classList.add("list", "completed");
+        listEnd.appendChild(item);
+        itemStart.classList.add("strike");
+        const runningFunction = currentRunningFunction(
+          "sitBackAndRelax",
+          false
+        );
+
+        // scroll to correct point
+        scrollToPoint(item, listContainer);
+      }, 3000);
+    });
+  }
+
+  function completedTea() {
+    const runningFunction = currentRunningFunction("completedTea");
+  }
+
+  async function makeTea() {
+    const a = await fillKettle();
+    const pause_1 = await pause();
+    const b = await grabAMug();
+    const pause_2 = await pause();
+    const c = await waitForKettleToBoil();
+    const pause_3 = await pause();
+    const d = await pourHotWaterIntoCup();
+    const pause_4 = await pause();
+    const e = await removeTeaBag();
+    const pause_5 = await pause();
+    const f = await addMilk();
+    const pause_6 = await pause();
+
+    // Completion function
+    const completed_tea = await completedTea();
+  }
+
+  const makeTeaButton = document.querySelector("#makeTeaButton");
+  makeTeaButton.addEventListener("click", function () {
+    listStart.innerHTML = "";
+    listEnd.innerHTML = "";
+    consoleTextArea.innerHTML = "";
+    makeTea();
+  });
+</script>
+{% endblock %}
