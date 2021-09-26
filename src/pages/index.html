@@ -53,17 +53,18 @@
   // Current running function
   function currentRunningFunction(functionName, status) {
     if (status) {
-      console.log(functionName);
-      const node = createElement("Starting: " + functionName + "()", "p");
-      node.classList.add("console-starting");
-      consoleTextArea.appendChild(node);
-      currentHeight = node.offsetTop;
+      const functionStart = createElement("Starting: " + functionName + "()", "p");
+      functionStart.classList.add("console-starting");
+      consoleTextArea.appendChild(functionStart);
+      currentHeight = functionStart.offsetTop;
       fakeConsole.scrollTop = currentHeight;
     } else {
-      console.log(functionName);
-      const node = createElement("Finished: " + functionName + "()", "p");
-      consoleTextArea.appendChild(node);
-      currentHeight = node.offsetTop;
+      const functionEnd = createElement("Finished: " + functionName + "()", "p");
+      const lineBreak = createElement("-----------------------", "p");
+      lineBreak.classList.add("console-white");
+      consoleTextArea.appendChild(functionEnd);
+      consoleTextArea.appendChild(lineBreak);
+      currentHeight = lineBreak.offsetTop;
       fakeConsole.scrollTop = currentHeight;
     }
   }
@@ -77,10 +78,7 @@
   }
 
   function scrollToPoint(el, elParent) {
-    console.log(el);
-    console.log(elParent);
     const currentHeight = el.offsetTop;
-    console.log(currentHeight);
     elParent.scrollTop = currentHeight;
   }
 
@@ -161,7 +159,7 @@
     listStart.appendChild(itemStart);
 
     // Pending...
-    const pending = createElement("☕😐😔...");
+    const pending = createElement("☕😐😔...", "li");
     listEnd.append(pending);
 
     // scroll to correct point
